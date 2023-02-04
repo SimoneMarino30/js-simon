@@ -12,3 +12,51 @@
 // Quanti millisecondi mi separano da domani alle 9:30?
 // Esiste un oggetto JS in grado di gestire le date?
 // Esistono dei metodi per trasformare una data in millisecondi?
+
+// Dichiarazione costanti globali per scrittura nel countdown
+let daysEl = document.getElementById("days");
+let hoursEl = document.getElementById("hours");
+let minutesEl = document.getElementById("minutes");
+let secondsEl = document.getElementById("seconds");
+
+// Recupero la data a cui settare il countdown
+let countDownDate = new Date("2023-02-06 09:30:00").getTime();
+
+// invocazione function onload per evitare azzeramento al refresh
+myCountDown();
+
+const count = setInterval(myCountDown, 1000);
+
+function myCountDown() {
+  let now = new Date().getTime();
+  let timeLeft = countDownDate - now;
+
+  let days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+  daysEl.innerHTML = days;
+  if (days < 10) {
+    daysEl.innerHTML = days < 10 ? "0" + days : days;
+  }
+
+  let hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  hoursEl.innerHTML = hours;
+  if (hours < 10) {
+    hoursEl.innerHTML = hours < 10 ? "0" + hours : hours;
+  }
+
+  let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+  minutesEl.innerHTML = minutes;
+  if (minutes < 10) {
+    minutesEl.innerHTML = minutes < 10 ? "0" + minutes : minutes;
+  }
+
+  let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+  secondsEl.innerHTML = seconds;
+  if (seconds < 10) {
+    secondsEl.innerHTML = seconds < 10 ? "0" + seconds : seconds;
+  }
+
+  if (timeLeft < 0) {
+    clearInterval(count);
+    document.getElementById("title").innerHTML = "TIME'S UP!!!";
+  }
+}
