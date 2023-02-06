@@ -20,7 +20,7 @@ let minutesEl = document.getElementById("minutes");
 let secondsEl = document.getElementById("seconds");
 
 // Recupero la data a cui settare il countdown
-let countDownDate = new Date("2023-02-06 09:30:00").getTime();
+let countDownDate = new Date("2023-02-07 09:30:00").getTime();
 
 // invocazione function onload per evitare azzeramento al refresh
 myCountDown();
@@ -33,27 +33,23 @@ function myCountDown() {
 
   let days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
   daysEl.innerHTML = days;
-  if (days < 10) {
-    daysEl.innerHTML = days < 10 ? "0" + days : days;
-  }
+
+  daysEl.innerHTML = days < 10 ? "0" + days : days;
 
   let hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   hoursEl.innerHTML = hours;
-  if (hours < 10) {
-    hoursEl.innerHTML = hours < 10 ? "0" + hours : hours;
-  }
+
+  hoursEl.innerHTML = hours < 10 ? "0" + hours : hours;
 
   let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
   minutesEl.innerHTML = minutes;
-  if (minutes < 10) {
-    minutesEl.innerHTML = minutes < 10 ? "0" + minutes : minutes;
-  }
+
+  minutesEl.innerHTML = minutes < 10 ? "0" + minutes : minutes;
 
   let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
   secondsEl.innerHTML = seconds;
-  if (seconds < 10) {
-    secondsEl.innerHTML = seconds < 10 ? "0" + seconds : seconds;
-  }
+
+  secondsEl.innerHTML = seconds < 10 ? "0" + seconds : seconds;
 
   if (timeLeft < 0) {
     clearInterval(count);
